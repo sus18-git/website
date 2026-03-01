@@ -18,7 +18,7 @@ export default function Home() {
         {/* ═══════════════════════════════════════════
             HERO SECTION — Full-screen video background
             ═══════════════════════════════════════════ */}
-        <section className="relative h-screen flex items-center overflow-hidden">
+        <section id="hero" className="relative h-screen flex items-center overflow-hidden">
 
           {/* 4K Video Background */}
           <video
@@ -124,7 +124,7 @@ export default function Home() {
                   <AnimatedText
                     as="h2"
                     text="Systems built for scale."
-                    className="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] font-bold tracking-[-0.03em] text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-white/40 mb-8"
+                    className="text-4xl md:text-5xl lg:text-[3.5rem] leading-[1.05] font-bold tracking-[-0.03em] text-[color:var(--theme-text)] mb-8"
                   />
 
                   <p className="text-white/40 leading-relaxed font-light text-lg mb-8">
@@ -190,7 +190,7 @@ export default function Home() {
                       <div className="w-12 h-px bg-gradient-to-r from-red-500/50 to-transparent" />
                     </div>
 
-                    <div className="relative z-10 bg-black/50 border border-white/[0.04] p-8 md:p-12 lg:p-16 rounded-[2rem] hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-700 overflow-hidden backdrop-blur-md">
+                    <div className="relative z-10 bg-white/[0.02] border border-white/[0.04] p-8 md:p-12 lg:p-16 rounded-[2rem] hover:border-white/[0.08] transition-all duration-700 overflow-hidden backdrop-blur-md">
 
                       {/* Ambient background effect inside card */}
                       <div className="absolute -top-32 -right-32 w-96 h-96 bg-red-500/5 rounded-full blur-[100px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none" />
@@ -267,7 +267,7 @@ export default function Home() {
             <AnimatedText
               as="h2"
               text="Enterprise-grade results without enterprise overhead."
-              className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+              className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[color:var(--theme-text)]"
             />
           </div>
 
@@ -293,7 +293,7 @@ export default function Home() {
             <AnimatedText
               as="h2"
               text="Use cases we deliver — across any industry."
-              className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+              className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[color:var(--theme-text)]"
             />
           </div>
 
@@ -342,7 +342,7 @@ export default function Home() {
               <AnimatedText
                 as="h2"
                 text="Premium delivery. Lean cost."
-                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]"
               />
               <p className="text-white/40 leading-relaxed font-light text-lg mb-10">
                 PingPal AI is built for teams that want high quality without high overhead. Our model is designed to be significantly more cost-efficient than large IT consultancies, while maintaining enterprise-grade engineering standards.
@@ -395,7 +395,7 @@ export default function Home() {
               <AnimatedText
                 as="h2"
                 text="A process designed to ship—fast."
-                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-[color:var(--theme-text)]"
               />
               <p className="text-white/40 leading-relaxed font-light text-lg">
                 Working software is the truth. We keep alignment tight, reduce unnecessary signoffs, and move from idea to production with clear milestones.
@@ -464,7 +464,7 @@ export default function Home() {
               <AnimatedText
                 as="h2"
                 text="Premium delivery at lean cost."
-                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]"
               />
 
               <p className="text-white/40 leading-relaxed font-light text-lg mb-8">
@@ -513,7 +513,7 @@ export default function Home() {
               <AnimatedText
                 as="h2"
                 text="Common questions."
-                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]"
               />
               <p className="text-white/40 leading-relaxed font-light text-lg">
                 Straight answers about how PingPal AI works, what we deliver, and what to expect.
@@ -556,7 +556,7 @@ export default function Home() {
               <div className="w-8 h-px bg-red-500/60" />
             </div>
 
-            <AnimatedText as="h2" text="Ready to automate work and ship fast?" className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70" />
+            <AnimatedText as="h2" text="Ready to automate work and ship fast?" className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]" />
             <p className="text-lg text-white/40 mb-12 max-w-lg font-light leading-relaxed">
               Tell us what you&apos;re building. PingPal AI will propose a clear plan, timeline, and lean-cost build approach.
             </p>

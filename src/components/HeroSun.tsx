@@ -1,8 +1,13 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+
+function pseudoRandom(seed: number): number {
+    const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+    return value - Math.floor(value);
+}
 
 function Sun() {
     const sunRef = useRef<THREE.Mesh>(null);
@@ -74,15 +79,17 @@ function StarField() {
     const starsRef = useRef<THREE.Points>(null);
     const count = 400;
 
-    const positions = new Float32Array(count * 3);
-    const sizes = new Float32Array(count);
+    const positions = useMemo(() => {
+        const pos = new Float32Array(count * 3);
 
-    for (let i = 0; i < count; i++) {
-        positions[i * 3] = (Math.random() - 0.5) * 40;
-        positions[i * 3 + 1] = (Math.random() - 0.5) * 20 + 3; // mostly above the sun
-        positions[i * 3 + 2] = (Math.random() - 0.5) * 15 - 5;
-        sizes[i] = Math.random() * 2 + 0.5;
-    }
+        for (let i = 0; i < count; i++) {
+            const seed = i * 5.377;
+            pos[i * 3] = (pseudoRandom(seed + 0.23) - 0.5) * 40;
+            pos[i * 3 + 1] = (pseudoRandom(seed + 0.47) - 0.5) * 20 + 3;
+            pos[i * 3 + 2] = (pseudoRandom(seed + 0.71) - 0.5) * 15 - 5;
+        }
+        return pos;
+    }, []);
 
     useFrame(({ clock }) => {
         if (starsRef.current) {
@@ -94,7 +101,6 @@ function StarField() {
         <points ref={starsRef}>
             <bufferGeometry>
                 <bufferAttribute attach="attributes-position" args={[positions, 3]} />
-                <bufferAttribute attach="attributes-size" args={[sizes, 1]} />
             </bufferGeometry>
             <pointsMaterial
                 color="#ffffff"

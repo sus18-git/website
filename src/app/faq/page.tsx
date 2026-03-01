@@ -44,7 +44,7 @@ export default function FAQ() {
                     <AnimatedText
                         as="h1"
                         text="Frequently asked questions."
-                        className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                        className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-[color:var(--theme-text)]"
                     />
                     <div className="max-w-3xl">
                         <AnimatedText

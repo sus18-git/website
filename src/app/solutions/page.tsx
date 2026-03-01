@@ -2,7 +2,7 @@ import AmbientBackground from "@/components/AmbientBackground";
 import { PremiumButton } from "@/components/ui/PremiumButton";
 import { PremiumLabel } from "@/components/ui/PremiumLabel";
 import { AnimatedText, ScrollReveal } from "@/components/ui/ScrollReveal";
-import { ArrowRight, Bot, Repeat, MonitorPlay, Database, Route } from "lucide-react";
+import { ArrowRight, Bot, Repeat, MonitorPlay, Database } from "lucide-react";
 import Link from "next/link";
 
 export default function Solutions() {
@@ -18,7 +18,7 @@ export default function Solutions() {
           <AnimatedText
             as="h1"
             text="Systems built for scale."
-            className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+            className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-[color:var(--theme-text)]"
           />
           <div className="max-w-3xl">
             <AnimatedText

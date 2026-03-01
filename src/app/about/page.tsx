@@ -23,7 +23,7 @@ export default function About() {
                     <AnimatedText
                         as="h1"
                         text="Built by senior product engineers and next-gen AI specialists."
-                        className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                        className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-[color:var(--theme-text)]"
                     />
                     <div className="max-w-3xl">
                         <AnimatedText
@@ -46,7 +46,7 @@ export default function About() {
                             <AnimatedText
                                 as="h2"
                                 text="Principles that guide every build."
-                                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]"
                             />
                         </div>
 
@@ -84,7 +84,7 @@ export default function About() {
                             <AnimatedText
                                 as="h2"
                                 text="Enterprise-grade delivery at a lean cost."
-                                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]"
                             />
 
                             <p className="text-white/40 leading-relaxed font-light text-lg mb-10">

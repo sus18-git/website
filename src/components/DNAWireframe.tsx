@@ -5,6 +5,11 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import * as THREE from "three";
 
+function pseudoRandom(seed: number): number {
+    const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+    return value - Math.floor(value);
+}
+
 /**
  * Complex DNA Helix — Production-Grade 3D Wireframe
  * 
@@ -186,11 +191,12 @@ function DNAConstruct() {
     const particlePositions = useMemo(() => {
         const pos = new Float32Array(particleCount * 3);
         for (let i = 0; i < particleCount; i++) {
+            const seed = i * 7.913;
             // Distribute in a cylinder shape around the DNA
-            const angle = Math.random() * Math.PI * 2;
-            const r = 1.5 + Math.random() * 4;
+            const angle = pseudoRandom(seed + 0.19) * Math.PI * 2;
+            const r = 1.5 + pseudoRandom(seed + 0.43) * 4;
             pos[i * 3] = Math.cos(angle) * r;
-            pos[i * 3 + 1] = (Math.random() - 0.5) * 20;
+            pos[i * 3 + 1] = (pseudoRandom(seed + 0.67) - 0.5) * 20;
             pos[i * 3 + 2] = Math.sin(angle) * r;
         }
         return pos;

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import PingPalLogo from "@/components/PingPalLogo";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
     { label: "Home", href: "/" },
@@ -26,10 +27,12 @@ export default function Navbar() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-500 ${scrolled
-                ? "bg-black/70 border-b border-white/[0.08] shadow-[0_4px_30px_rgba(0,0,0,0.6)]"
-                : "bg-black/40 border-b border-white/[0.04]"
-                }`}
+            className="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-500"
+            style={{
+                backgroundColor: scrolled ? "var(--theme-nav-bg)" : "var(--theme-nav-bg-idle)",
+                borderBottom: `1px solid ${scrolled ? "var(--theme-nav-border)" : "var(--theme-nav-border-idle)"}`,
+                boxShadow: scrolled ? "var(--theme-shadow)" : "none",
+            }}
         >
             <nav className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 flex items-center justify-between h-[72px]">
 
@@ -56,20 +59,22 @@ export default function Navbar() {
                     ))}
                 </div>
 
-                {/* Desktop CTA */}
-                <div className="hidden md:flex items-center">
+                {/* Desktop CTA + Theme Toggle */}
+                <div className="hidden md:flex items-center gap-3">
+                    <ThemeToggle />
                     <Link href="/contact">
-                        <button className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.04] px-6 font-medium text-white transition-all duration-500 hover:border-red-500/40 hover:bg-red-500/10 hover:shadow-[0_0_20px_rgba(255,0,0,0.15)]">
+                        <div role="button" tabIndex={0} className="group relative inline-flex h-10 items-center justify-center overflow-hidden rounded-full border border-white/10 bg-white/[0.04] px-6 font-medium text-white transition-all duration-500 hover:border-red-500/40 hover:bg-red-500/10 hover:shadow-[0_0_20px_rgba(255,0,0,0.15)]">
                             <span className="relative z-10 flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-white/70 group-hover:text-white transition-colors duration-300">
                                 Start a Project <ArrowRight className="w-3.5 h-3.5" />
                             </span>
-                        </button>
+                        </div>
                     </Link>
                 </div>
 
                 {/* Mobile Hamburger */}
                 <button
                     onClick={() => setMobileOpen(!mobileOpen)}
+                    aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                     className="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white"
                 >
                     {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -89,11 +94,14 @@ export default function Navbar() {
                             {link.label}
                         </Link>
                     ))}
-                    <Link href="/contact" onClick={() => setMobileOpen(false)}>
-                        <button className="mt-2 w-full h-12 rounded-full border border-red-500/30 bg-red-500/10 text-white text-xs tracking-[0.18em] uppercase flex items-center justify-center gap-2">
-                            Start a Project <ArrowRight className="w-3.5 h-3.5" />
-                        </button>
-                    </Link>
+                    <div className="flex items-center justify-between mt-2 gap-4">
+                        <ThemeToggle />
+                        <Link href="/contact" onClick={() => setMobileOpen(false)} className="flex-1">
+                            <div role="button" tabIndex={0} className="w-full h-12 rounded-full border border-red-500/30 bg-red-500/10 text-white text-xs tracking-[0.18em] uppercase flex items-center justify-center gap-2">
+                                Start a Project <ArrowRight className="w-3.5 h-3.5" />
+                            </div>
+                        </Link>
+                    </div>
                 </div>
             )}
         </header>

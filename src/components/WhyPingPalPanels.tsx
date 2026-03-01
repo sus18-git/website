@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { SpeedIcon, SecurityIcon, LeadershipIcon, CustomOpsIcon, ProductionIcon, LeanPricingIcon } from "@/components/WhyPingPalIcons";
 
 const panels = [
@@ -32,8 +31,8 @@ function ScrollPanel({ item, idx }: { item: typeof panels[0]; idx: number }) {
             <div className="hidden lg:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 items-center justify-center">
                 <motion.div
                     variants={{
-                        inactive: { scale: 1, backgroundColor: "rgba(255,255,255,0.2)", boxShadow: "0 0 0 rgba(255,0,0,0)" },
-                        active: { scale: 1.2, backgroundColor: "rgba(255,0,0,0.8)", boxShadow: "0 0 24px 8px rgba(255,0,0,0.6)" }
+                        inactive: { scale: 1, backgroundColor: "var(--theme-glass-hover)", boxShadow: "0 0 0 rgba(255,0,0,0)" },
+                        active: { scale: 1.2, backgroundColor: "var(--theme-accent)", boxShadow: "0 0 24px 8px var(--theme-accent-glow)" }
                     }}
                     transition={{ duration: 0.6 }}
                     className="w-3 h-3 rounded-full"
@@ -48,11 +47,11 @@ function ScrollPanel({ item, idx }: { item: typeof panels[0]; idx: number }) {
 
                     <motion.div
                         variants={{
-                            inactive: { color: "rgba(255,255,255,0.15)", scale: 0.9 },
-                            active: { color: "rgba(255,255,255,0.9)", scale: 1 }
+                            inactive: { opacity: 0.15, scale: 0.9 },
+                            active: { opacity: 0.9, scale: 1 }
                         }}
                         transition={{ duration: 0.8 }}
-                        className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 flex items-center justify-center z-10"
+                        className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 flex items-center justify-center z-10 text-white"
                     >
                         {item.icon}
 
@@ -75,21 +74,21 @@ function ScrollPanel({ item, idx }: { item: typeof panels[0]; idx: number }) {
                     </div>
                     <motion.h3
                         variants={{
-                            inactive: { color: "rgba(255,255,255,0.3)" },
-                            active: { color: "rgba(255,255,255,0.95)" }
+                            inactive: { opacity: 0.3 },
+                            active: { opacity: 0.95 }
                         }}
                         transition={{ duration: 0.8 }}
-                        className="text-2xl md:text-[2rem] font-semibold tracking-tight mb-5"
+                        className="text-2xl md:text-[2rem] font-semibold tracking-tight mb-5 text-white"
                     >
                         {item.title}
                     </motion.h3>
                     <motion.p
                         variants={{
-                            inactive: { color: "rgba(255,255,255,0.15)" },
-                            active: { color: "rgba(255,255,255,0.6)" }
+                            inactive: { opacity: 0.15 },
+                            active: { opacity: 0.6 }
                         }}
                         transition={{ duration: 0.8 }}
-                        className="leading-relaxed font-light text-[15px] md:text-[17px] max-w-md mx-auto lg:mx-0"
+                        className="leading-relaxed font-light text-[15px] md:text-[17px] max-w-md mx-auto lg:mx-0 text-white"
                     >
                         {item.desc}
                     </motion.p>

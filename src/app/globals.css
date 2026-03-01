@@ -47,37 +47,92 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   THEME TOKENS — Design System Color Variables
+   
+   DARK = default (matches the existing production site exactly)
+   LIGHT = override via [data-theme="light"] on <html>
+   
+   Components use Tailwind utilities (bg-black, text-white/50, etc.)
+   which are overridden below via CSS specificity — zero class changes.
+   ═══════════════════════════════════════════════════════════════ */
+
 :root {
   --radius: 0.625rem;
+
+  /* ── Shadcn design tokens (dark default) ── */
   --background: 0 0% 0%;
   --foreground: 0 0% 98%;
-
   --card: 0 0% 3%;
   --card-foreground: 0 0% 98%;
-
   --popover: 0 0% 3%;
   --popover-foreground: 0 0% 98%;
-
   --primary: 0 0% 98%;
   --primary-foreground: 0 0% 0%;
-
   --secondary: 0 0% 6%;
   --secondary-foreground: 0 0% 98%;
-
   --muted: 0 0% 8%;
   --muted-foreground: 0 0% 55%;
-
-  /* Brand accent: Crimson Red — used sparingly for glows, indicators, and active states */
   --accent: 0 100% 50%;
   --accent-foreground: 0 0% 100%;
-
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
-
   --border: 0 0% 10%;
   --input: 0 0% 10%;
   --ring: 0 100% 50%;
+  --chart-1: 0 100% 50%;
+  --chart-2: 0 0% 40%;
+  --chart-3: 0 0% 60%;
+  --chart-4: 0 0% 80%;
+  --chart-5: 0 0% 20%;
 
+  /* ── Semantic theme tokens (dark) ── */
+  --theme-bg: #000000;
+  --theme-bg-elevated: #0a0a0a;
+  --theme-bg-subtle: #111111;
+  --theme-text: #ffffff;
+  --theme-text-muted: rgba(255, 255, 255, 0.50);
+  --theme-text-faint: rgba(255, 255, 255, 0.30);
+  --theme-text-ghost: rgba(255, 255, 255, 0.15);
+  --theme-text-xs: rgba(255, 255, 255, 0.40);
+  --theme-border: rgba(255, 255, 255, 0.06);
+  --theme-border-subtle: rgba(255, 255, 255, 0.04);
+  --theme-border-hover: rgba(255, 255, 255, 0.12);
+  --theme-glass: rgba(255, 255, 255, 0.02);
+  --theme-glass-hover: rgba(255, 255, 255, 0.04);
+  --theme-accent: #ff0000;
+  --theme-accent-muted: rgba(255, 0, 0, 0.60);
+  --theme-accent-soft: rgba(255, 0, 0, 0.06);
+  --theme-accent-glow: rgba(255, 0, 0, 0.10);
+  --theme-accent-glow-strong: rgba(255, 0, 0, 0.40);
+  --theme-nav-bg: rgba(0, 0, 0, 0.70);
+  --theme-nav-bg-idle: rgba(0, 0, 0, 0.40);
+  --theme-nav-border: rgba(255, 255, 255, 0.08);
+  --theme-nav-border-idle: rgba(255, 255, 255, 0.04);
+  --theme-shadow: none;
+  --theme-invert: 0;
+}
+
+.dark {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 3%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 6%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 8%;
+  --muted-foreground: 0 0% 55%;
+  --accent: 0 100% 50%;
+  --accent-foreground: 0 0% 100%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 10%;
+  --input: 0 0% 10%;
+  --ring: 0 100% 50%;
   --chart-1: 0 100% 50%;
   --chart-2: 0 0% 40%;
   --chart-3: 0 0% 60%;
@@ -85,40 +140,394 @@
   --chart-5: 0 0% 20%;
 }
 
-.dark {
-  --background: 0 0% 0%;
-  --foreground: 0 0% 98%;
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDES
+   Activated by: <html data-theme="light">
+   
+   This block overrides ONLY the CSS variables.
+   No component CSS is duplicated. Zero class name changes.
+   ═══════════════════════════════════════════════════════════════ */
 
-  --card: 0 0% 3%;
-  --card-foreground: 0 0% 98%;
-
-  --popover: 0 0% 3%;
-  --popover-foreground: 0 0% 98%;
-
-  --primary: 0 0% 98%;
-  --primary-foreground: 0 0% 0%;
-
-  --secondary: 0 0% 6%;
-  --secondary-foreground: 0 0% 98%;
-
-  --muted: 0 0% 8%;
-  --muted-foreground: 0 0% 55%;
-
-  --accent: 0 100% 50%;
+[data-theme="light"] {
+  /* ── Shadcn tokens (light) ── */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 4%;
+  --card: 0 0% 98%;
+  --card-foreground: 0 0% 4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 4%;
+  --primary: 0 0% 9%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 9%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 0 72% 51%;
   --accent-foreground: 0 0% 100%;
-
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 0 72% 51%;
+  --chart-1: 0 72% 51%;
+  --chart-2: 0 0% 60%;
+  --chart-3: 0 0% 40%;
+  --chart-4: 0 0% 20%;
+  --chart-5: 0 0% 80%;
 
-  --border: 0 0% 10%;
-  --input: 0 0% 10%;
-  --ring: 0 100% 50%;
+  /* ── Semantic theme tokens (light) ── */
+  --theme-bg: #ffffff;
+  --theme-bg-elevated: #f7f7f8;
+  --theme-bg-subtle: #eeeeef;
+  --theme-text: #0a0a0b;
+  --theme-text-muted: rgba(0, 0, 0, 0.55);
+  --theme-text-faint: rgba(0, 0, 0, 0.35);
+  --theme-text-ghost: rgba(0, 0, 0, 0.12);
+  --theme-text-xs: rgba(0, 0, 0, 0.45);
+  --theme-border: rgba(0, 0, 0, 0.08);
+  --theme-border-subtle: rgba(0, 0, 0, 0.05);
+  --theme-border-hover: rgba(0, 0, 0, 0.15);
+  --theme-glass: rgba(0, 0, 0, 0.02);
+  --theme-glass-hover: rgba(0, 0, 0, 0.04);
+  --theme-accent: #dc2626;
+  --theme-accent-muted: rgba(220, 38, 38, 0.70);
+  --theme-accent-soft: rgba(220, 38, 38, 0.06);
+  --theme-accent-glow: rgba(220, 38, 38, 0.08);
+  --theme-accent-glow-strong: rgba(220, 38, 38, 0.25);
+  --theme-nav-bg: rgba(255, 255, 255, 0.85);
+  --theme-nav-bg-idle: rgba(255, 255, 255, 0.60);
+  --theme-nav-border: rgba(0, 0, 0, 0.08);
+  --theme-nav-border-idle: rgba(0, 0, 0, 0.04);
+  --theme-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --theme-invert: 1;
+}
 
-  --chart-1: 0 100% 50%;
-  --chart-2: 0 0% 40%;
-  --chart-3: 0 0% 60%;
-  --chart-4: 0 0% 80%;
-  --chart-5: 0 0% 20%;
+/* ═══════════════════════════════════════════════════════════════
+   UTILITY OVERRIDES — Light Mode
+   
+   These override hardcoded Tailwind utility colors (bg-black,
+   text-white, border-white/XX, etc.) when light mode is active.
+   This approach avoids touching any component files.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Page & section backgrounds ── */
+[data-theme="light"] .bg-black {
+  background-color: var(--theme-bg) !important;
+}
+
+[data-theme="light"] .bg-black\/40,
+[data-theme="light"] .bg-black\/70,
+[data-theme="light"] .bg-black\/80 {
+  background-color: var(--theme-bg) !important;
+}
+
+/* ── Text — primary ── */
+[data-theme="light"] .text-white {
+  color: var(--theme-text) !important;
+}
+
+/* ── Text — opacity variants ── */
+[data-theme="light"] .text-white\/90 {
+  color: rgba(10, 10, 11, 0.92) !important;
+}
+
+[data-theme="light"] .text-white\/80 {
+  color: rgba(10, 10, 11, 0.82) !important;
+}
+
+[data-theme="light"] .text-white\/70 {
+  color: rgba(10, 10, 11, 0.72) !important;
+}
+
+[data-theme="light"] .text-white\/60 {
+  color: rgba(10, 10, 11, 0.62) !important;
+}
+
+[data-theme="light"] .text-white\/50 {
+  color: var(--theme-text-muted) !important;
+}
+
+[data-theme="light"] .text-white\/40 {
+  color: var(--theme-text-xs) !important;
+}
+
+[data-theme="light"] .text-white\/35 {
+  color: rgba(10, 10, 11, 0.38) !important;
+}
+
+[data-theme="light"] .text-white\/30 {
+  color: var(--theme-text-faint) !important;
+}
+
+[data-theme="light"] .text-white\/25 {
+  color: rgba(10, 10, 11, 0.28) !important;
+}
+
+[data-theme="light"] .text-white\/20 {
+  color: rgba(10, 10, 11, 0.22) !important;
+}
+
+[data-theme="light"] .text-white\/15 {
+  color: var(--theme-text-ghost) !important;
+}
+
+/* ── Borders — opacity variants ── */
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/\[0\.08\],
+[data-theme="light"] .border-white\/\[0\.06\],
+[data-theme="light"] .border-white\/\[0\.05\],
+[data-theme="light"] .border-white\/\[0\.04\] {
+  border-color: var(--theme-border) !important;
+}
+
+[data-theme="light"] .border-white\/20,
+[data-theme="light"] .border-white\/\[0\.12\] {
+  border-color: var(--theme-border-hover) !important;
+}
+
+/* ── Glass / semi-transparent backgrounds ── */
+[data-theme="light"] .bg-white\/\[0\.01\],
+[data-theme="light"] .bg-white\/\[0\.02\] {
+  background-color: var(--theme-glass) !important;
+}
+
+[data-theme="light"] .bg-white\/\[0\.03\],
+[data-theme="light"] .bg-white\/\[0\.04\] {
+  background-color: var(--theme-glass-hover) !important;
+}
+
+[data-theme="light"] .bg-white\/5,
+[data-theme="light"] .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ── Gradient text: from-white, to-white/70 ── */
+[data-theme="light"] .from-white {
+  --tw-gradient-from: var(--theme-text) !important;
+}
+
+[data-theme="light"] .via-white {
+  --tw-gradient-via: rgba(10, 10, 11, 0.85) !important;
+}
+
+[data-theme="light"] .to-white\/40 {
+  --tw-gradient-to: rgba(10, 10, 11, 0.45) !important;
+}
+
+[data-theme="light"] .to-white\/70 {
+  --tw-gradient-to: rgba(10, 10, 11, 0.72) !important;
+}
+
+/* ── Divider lines using via-white ── */
+[data-theme="light"] .via-white\/\[0\.06\] {
+  --tw-gradient-via: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* ── Brand accent — keep red but adjust for light backgrounds ── */
+[data-theme="light"] .text-red-500 {
+  color: var(--theme-accent) !important;
+}
+
+[data-theme="light"] .bg-red-500\/10,
+[data-theme="light"] .bg-red-500\/\[0\.06\] {
+  background-color: var(--theme-accent-soft) !important;
+}
+
+[data-theme="light"] .bg-red-500\/60,
+[data-theme="light"] .bg-red-500\/50 {
+  background-color: var(--theme-accent-muted) !important;
+}
+
+[data-theme="light"] .text-red-500\/60,
+[data-theme="light"] .text-red-500\/70 {
+  color: var(--theme-accent-muted) !important;
+}
+
+[data-theme="light"] .border-red-500\/40,
+[data-theme="light"] .border-red-500\/30 {
+  border-color: rgba(220, 38, 38, 0.30) !important;
+}
+
+/* ── Inline placeholder color ── */
+[data-theme="light"] .placeholder-white\/20::placeholder {
+  color: rgba(10, 10, 11, 0.30) !important;
+}
+
+/* ── Focus states ── */
+[data-theme="light"] .focus\:border-red-500\/60:focus {
+  border-color: var(--theme-accent-muted) !important;
+}
+
+/* ── Navbar glass ── */
+[data-theme="light"] .glass-nav {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* ── Selection ── */
+[data-theme="light"] .selection\:bg-white\/20 ::selection,
+[data-theme="light"] .selection\:bg-white\/20::selection {
+  background-color: rgba(220, 38, 38, 0.15);
+}
+
+[data-theme="light"] .selection\:text-white ::selection,
+[data-theme="light"] .selection\:text-white::selection {
+  color: var(--theme-text);
+}
+
+/* ── Hover state overrides ── */
+[data-theme="light"] .hover\:text-white\/70:hover {
+  color: rgba(10, 10, 11, 0.72) !important;
+}
+
+[data-theme="light"] .hover\:text-white:hover {
+  color: var(--theme-text) !important;
+}
+
+[data-theme="light"] .hover\:border-white\/20:hover,
+[data-theme="light"] .hover\:border-white\/\[0\.08\]:hover {
+  border-color: var(--theme-border-hover) !important;
+}
+
+[data-theme="light"] .hover\:bg-white\/\[0\.02\]:hover,
+[data-theme="light"] .hover\:bg-white\/\[0\.03\]:hover {
+  background-color: var(--theme-glass-hover) !important;
+}
+
+[data-theme="light"] .hover\:bg-black\/80:hover {
+  background-color: var(--theme-bg-elevated) !important;
+}
+
+/* ── Group hover overrides ── */
+[data-theme="light"] .group-hover\:text-white:hover,
+[data-theme="light"] .group:hover .group-hover\:text-white {
+  color: var(--theme-text) !important;
+}
+
+[data-theme="light"] .group-hover\:text-red-500:hover,
+[data-theme="light"] .group:hover .group-hover\:text-red-500 {
+  color: var(--theme-accent) !important;
+}
+
+[data-theme="light"] .group:hover .group-hover\:text-white\/70 {
+  color: rgba(10, 10, 11, 0.72) !important;
+}
+
+/* ── Group-open overrides (FAQ details) ── */
+[data-theme="light"] .group-open\:text-white {
+  color: var(--theme-text) !important;
+}
+
+[data-theme="light"] .group-open\:text-red-500 {
+  color: var(--theme-accent) !important;
+}
+
+[data-theme="light"] .group-open\:border-red-500\/30 {
+  border-color: rgba(220, 38, 38, 0.30) !important;
+}
+
+/* ─────────────────────────────────────────
+   Hero section: always dark background (video),
+   so text must stay white in all themes
+   ───────────────────────────────────────── */
+[data-theme="light"] #hero,
+[data-theme="light"] #hero * {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] #hero .text-red-500,
+[data-theme="light"] #hero .bg-red-500\/60 {
+  color: #ff0000 !important;
+}
+
+[data-theme="light"] #hero .text-white\/40 {
+  color: rgba(255, 255, 255, 0.40) !important;
+}
+
+[data-theme="light"] #hero .bg-black,
+[data-theme="light"] #hero .bg-black\/40,
+[data-theme="light"] #hero .bg-black\/70 {
+  background-color: #000000 !important;
+}
+
+[data-theme="light"] #hero .from-black {
+  --tw-gradient-from: #000000 !important;
+}
+
+[data-theme="light"] #hero .via-black\/60 {
+  --tw-gradient-via: rgba(0, 0, 0, 0.60) !important;
+}
+
+[data-theme="light"] #hero .to-black\/40 {
+  --tw-gradient-to: rgba(0, 0, 0, 0.40) !important;
+}
+
+[data-theme="light"] #hero .from-black\/70 {
+  --tw-gradient-from: rgba(0, 0, 0, 0.70) !important;
+}
+
+[data-theme="light"] #hero .border-white\/10 {
+  border-color: rgba(255, 255, 255, 0.10) !important;
+}
+
+[data-theme="light"] #hero .bg-white\/\[0\.04\] {
+  background-color: rgba(255, 255, 255, 0.04) !important;
+}
+
+/* ─────────────────────────────────────────
+   Ambient background styling
+   ───────────────────────────────────────── */
+.ambient-bg {
+  background: #020202;
+}
+
+.ambient-glow {
+  mix-blend-mode: screen;
+}
+
+.ambient-glow-1 {
+  background-color: rgba(255, 0, 0, 0.10);
+}
+
+.ambient-glow-2 {
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+.ambient-overlay {
+  background-color: rgba(0, 0, 0, 0.50);
+}
+
+.ambient-vignette {
+  background: radial-gradient(circle at center, transparent 0%, #000000 100%);
+}
+
+[data-theme="light"] .ambient-bg {
+  background: linear-gradient(180deg, #f8f8f9 0%, #ffffff 45%, #f1f1f3 100%);
+}
+
+[data-theme="light"] .ambient-canvas {
+  opacity: 0.38;
+  filter: saturate(0.82) contrast(0.86);
+}
+
+[data-theme="light"] .ambient-glow {
+  mix-blend-mode: multiply;
+}
+
+[data-theme="light"] .ambient-glow-1 {
+  background-color: rgba(220, 38, 38, 0.08);
+}
+
+[data-theme="light"] .ambient-glow-2 {
+  background-color: rgba(220, 38, 38, 0.05);
+}
+
+[data-theme="light"] .ambient-overlay {
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+[data-theme="light"] .ambient-vignette {
+  background: radial-gradient(circle at center, transparent 20%, rgba(245, 245, 247, 0.95) 100%);
 }
 
 @layer base {

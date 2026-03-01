@@ -4,6 +4,11 @@ import { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
+function pseudoRandom(seed: number): number {
+  const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+  return value - Math.floor(value);
+}
+
 function NeuralNetwork() {
   const groupRef = useRef<THREE.Group>(null);
   const linesRef = useRef<THREE.LineSegments>(null);
@@ -22,13 +27,19 @@ function NeuralNetwork() {
     const whiteColor = new THREE.Color(0xffffff);
 
     for (let i = 0; i < particleCount; i++) {
+      const seed = i * 17.137;
+      const r1 = pseudoRandom(seed + 0.11);
+      const r2 = pseudoRandom(seed + 0.27);
+      const r3 = pseudoRandom(seed + 0.53);
+      const r4 = pseudoRandom(seed + 0.79);
+
       // Create a wider dispersion
-      pos[i * 3] = (Math.random() - 0.5) * 50;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 35;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 50;
+      pos[i * 3] = (r1 - 0.5) * 50;
+      pos[i * 3 + 1] = (r2 - 0.5) * 35;
+      pos[i * 3 + 2] = (r3 - 0.5) * 50;
 
       // 80% cyber blue, 20% pure white for contrast
-      const mixedColor = Math.random() > 0.8 ? whiteColor : baseColor;
+      const mixedColor = r4 > 0.8 ? whiteColor : baseColor;
       col[i * 3] = mixedColor.r;
       col[i * 3 + 1] = mixedColor.g;
       col[i * 3 + 2] = mixedColor.b;
@@ -36,15 +47,18 @@ function NeuralNetwork() {
     return [pos, col];
   }, []);
 
-  const velocities = useMemo(() => {
+  const initialVelocities = useMemo(() => {
     const vel = new Float32Array(particleCount * 3);
     for (let i = 0; i < particleCount; i++) {
-      vel[i * 3] = (Math.random() - 0.5) * 0.03;
-      vel[i * 3 + 1] = (Math.random() - 0.5) * 0.03;
-      vel[i * 3 + 2] = (Math.random() - 0.5) * 0.03;
+      const seed = i * 9.731;
+      vel[i * 3] = (pseudoRandom(seed + 0.13) - 0.5) * 0.03;
+      vel[i * 3 + 1] = (pseudoRandom(seed + 0.29) - 0.5) * 0.03;
+      vel[i * 3 + 2] = (pseudoRandom(seed + 0.47) - 0.5) * 0.03;
     }
     return vel;
   }, []);
+  const velocitiesRef = useRef<Float32Array>(initialVelocities);
+  const velocities = velocitiesRef.current;
 
   const maxLines = (particleCount * (particleCount - 1)) / 2;
   const linePositions = useMemo(() => new Float32Array(maxLines * 6), [maxLines]);

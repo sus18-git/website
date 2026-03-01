@@ -124,20 +124,20 @@ export default function AmbientBackground() {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -900]);
 
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden bg-[#020202] pointer-events-none">
+    <div className="ambient-bg fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
 
       {/* Dramatic cinematic background lighting reacting to scroll */}
       <motion.div
         style={{ y: y1 }}
-        className="absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full bg-[#ff0000]/10 blur-[180px] mix-blend-screen"
+        className="ambient-glow ambient-glow-1 absolute top-[-20%] left-[-10%] w-[70vw] h-[70vw] rounded-full blur-[180px]"
       />
       <motion.div
         style={{ y: y2 }}
-        className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full bg-[#ff0000]/5 blur-[180px] mix-blend-screen"
+        className="ambient-glow ambient-glow-2 absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] rounded-full blur-[180px]"
       />
 
       {/* The Central 3D Object Canvas */}
-      <div className="absolute inset-0 opacity-100">
+      <div className="ambient-canvas absolute inset-0 opacity-100">
         <Canvas
           camera={{ position: [0, 0, 12], fov: 45 }}
           dpr={[1, 2]}
@@ -157,10 +157,10 @@ export default function AmbientBackground() {
       </div>
 
       {/* Glassmorphic Overlay: Subdues the 3D object and puts sharp focus firmly on the typography */}
-      <div className="absolute inset-0 bg-black/50 backdrop-blur-[16px] pointer-events-none" />
+      <div className="ambient-overlay absolute inset-0 backdrop-blur-[16px] pointer-events-none" />
 
       {/* Light edge vignetting to further frame the page and push focus center */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_100%)] pointer-events-none" />
+      <div className="ambient-vignette absolute inset-0 pointer-events-none" />
     </div>
   );
 }

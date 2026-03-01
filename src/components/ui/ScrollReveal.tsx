@@ -16,36 +16,34 @@ export function ScrollReveal({
   delay?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const elementsRef = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
+    if (!containerRef.current) return;
+
     const ctx = gsap.context(() => {
-      elementsRef.current.forEach((el, index) => {
-        if (!el) return;
-        gsap.fromTo(
-          el,
-          { y: 100, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            ease: "power4.out",
-            delay: delay + index * 0.1,
-            scrollTrigger: {
-              trigger: el,
-              start: "top 90%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
+      gsap.fromTo(
+        containerRef.current,
+        { y: 60, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "power4.out",
+          delay,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     }, containerRef);
 
     return () => ctx.revert();
   }, [delay]);
 
   return (
-    <div ref={containerRef} className={className}>
+    <div ref={containerRef} className={className} style={{ opacity: 0 }}>
       {children}
     </div>
   );
@@ -59,7 +57,7 @@ export function AnimatedText({
 }: {
   text: string;
   className?: string;
-  as?: any;
+  as?: "h1" | "h2" | "h3" | "h4" | "p" | "span" | "div";
   delay?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -81,7 +79,7 @@ export function AnimatedText({
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            toggleActions: "play none none none",
           },
         }
       );
@@ -90,22 +88,23 @@ export function AnimatedText({
     return () => ctx.revert();
   }, [delay, text]);
 
-  // Separate gradient-related classes so they apply to the inner text wrapper
-  // This fixes bg-clip-text not working across nested inline-block spans
-  const gradientClasses = [
-    "text-transparent",
-    "bg-clip-text",
-  ];
-  const gradientPatterns = [/bg-gradient-[\w-[\]\/]+/g, /from-[\w-[\]\/]+/g, /via-[\w-[\]\/]+/g, /to-[\w-[\]\/]+/g];
+  // Separate gradient-related classes so they apply to the inner text wrapper.
+  // Use prefix checks to support arbitrary Tailwind values like from-[var(--theme-text)].
+  const gradientClasses = new Set(["text-transparent", "bg-clip-text"]);
 
   const classTokens = className.split(/\s+/);
   const outerClasses: string[] = [];
   const innerGradientClasses: string[] = [];
 
   for (const token of classTokens) {
+    if (!token) continue;
+    const baseToken = token.split(":").pop() ?? token;
     const isGradient =
-      gradientClasses.includes(token) ||
-      gradientPatterns.some((p) => { p.lastIndex = 0; return p.test(token); });
+      gradientClasses.has(baseToken) ||
+      baseToken.startsWith("bg-gradient-") ||
+      baseToken.startsWith("from-") ||
+      baseToken.startsWith("via-") ||
+      baseToken.startsWith("to-");
     if (isGradient) {
       innerGradientClasses.push(token);
     } else {

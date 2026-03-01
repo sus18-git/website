@@ -5,6 +5,11 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, Preload, MeshTransmissionMaterial, Environment } from '@react-three/drei';
 import * as THREE from 'three';
 
+function pseudoRandom(seed: number): number {
+    const value = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+    return value - Math.floor(value);
+}
+
 // --------------------------------------------------------------------------
 // PREMIUM ENTERPRISE VISUALIZATION
 // A glass sphere with internal neural-network data lattice.
@@ -21,9 +26,10 @@ function NeuralLattice() {
         const radius = 1.6;
 
         for (let i = 0; i < nodeCount; i++) {
-            const r = radius * Math.cbrt(Math.random());
-            const theta = Math.random() * 2 * Math.PI;
-            const phi = Math.acos(2 * Math.random() - 1);
+            const seed = i * 11.731;
+            const r = radius * Math.cbrt(pseudoRandom(seed + 0.17));
+            const theta = pseudoRandom(seed + 0.41) * 2 * Math.PI;
+            const phi = Math.acos(2 * pseudoRandom(seed + 0.73) - 1);
             const x = r * Math.sin(phi) * Math.cos(theta);
             const y = r * Math.sin(phi) * Math.sin(theta);
             const z = r * Math.cos(phi);
@@ -45,7 +51,7 @@ function NeuralLattice() {
             for (let k = 0; k < Math.min(3, distances.length); k++) {
                 const neighbor = distances[k];
                 if (neighbor.dist < connectThreshold) {
-                    const isActive = Math.random() > 0.7;
+                    const isActive = pseudoRandom(i * 997 + neighbor.index * 37 + k * 13 + 0.91) > 0.7;
                     const target = isActive ? activeLines : lines;
                     target.push(pos[i].x, pos[i].y, pos[i].z, pos[neighbor.index].x, pos[neighbor.index].y, pos[neighbor.index].z);
                     if (isActive) { activeNodes.add(i); activeNodes.add(neighbor.index); }

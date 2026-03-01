@@ -188,7 +188,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                     <AnimatedText
                         as="h1"
                         text={data.h1}
-                        className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                        className="text-4xl md:text-6xl lg:text-[4.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-[color:var(--theme-text)]"
                     />
                     <div className="max-w-3xl">
                         <AnimatedText
@@ -211,7 +211,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                             <AnimatedText
                                 as="h2"
                                 text="Challenges we solve."
-                                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                                className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]"
                             />
                         </div>
                         <div className="lg:w-7/12 flex flex-col gap-5">
@@ -235,7 +235,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                         <AnimatedText
                             as="h2"
                             text={`What PingPal AI builds for ${data.title.toLowerCase()} teams.`}
-                            className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70 max-w-4xl"
+                            className="text-4xl md:text-5xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)] max-w-4xl"
                         />
                     </div>
 
@@ -276,7 +276,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                             <AnimatedText
                                 as="h2"
                                 text={`Ready to modernize your ${data.title.toLowerCase()} operations?`}
-                                className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-8 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
+                                className="text-3xl md:text-4xl font-bold tracking-[-0.03em] mb-8 text-[color:var(--theme-text)]"
                             />
                             <ScrollReveal delay={0.2}>
                                 <Link href="/contact">
