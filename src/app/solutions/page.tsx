@@ -11,20 +11,20 @@ export default function Solutions() {
       <AmbientBackground />
 
       <main className="relative z-10 w-full flex flex-col items-center overflow-hidden">
-        
+
         {/* HERO SECTION */}
         <section className="relative w-full max-w-7xl mx-auto px-7 py-32 md:px-12 lg:px-20 lg:py-56 flex flex-col justify-center items-start">
           <PremiumLabel>Architecture & Solutions</PremiumLabel>
-          <AnimatedText 
-            as="h1" 
-            text="Systems built for scale." 
+          <AnimatedText
+            as="h1"
+            text="Systems built for scale."
             className="text-5xl md:text-7xl lg:text-[5.5rem] font-bold tracking-[-0.04em] leading-[1.05] mb-8 max-w-5xl text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70"
           />
           <div className="max-w-3xl">
-            <AnimatedText 
-              as="p" 
+            <AnimatedText
+              as="p"
               delay={0.3}
-              text="PingPal delivers AI and software ecosystems that eliminate friction, reduce manual work, and inject clarity across your operations. We don't just build features; we engineer outcomes using a production-first mindset." 
+              text="PingPal AI delivers AI and software ecosystems that eliminate friction, reduce manual work, and inject clarity across your operations. We don't just build features; we engineer outcomes using a production-first mindset."
               className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-12 font-light tracking-wide"
             />
           </div>
@@ -32,12 +32,12 @@ export default function Solutions() {
 
         {/* SOLUTIONS LIST */}
         <section className="relative w-full max-w-7xl mx-auto px-7 pb-32 md:px-12 lg:px-20 grid grid-cols-1 gap-16 lg:gap-32">
-          
+
           {[
             {
               id: "ai-chatbots",
               title: "AI Chatbots & Agents",
-              desc: "A conversational interface is just the beginning. PingPal builds autonomous, task-driven AI agents securely integrated into your core systems to deliver measurable outcomes—from support deflection to highly qualified lead conversion.",
+              desc: "A conversational interface is just the beginning. PingPal AI builds autonomous, task-driven AI agents securely integrated into your core systems to deliver measurable outcomes—from support deflection to highly qualified lead conversion.",
               icon: <Bot className="w-8 h-8 text-accent" />,
               features: [
                 "Enterprise RAG (Retrieval-Augmented Generation)",
@@ -90,7 +90,7 @@ export default function Solutions() {
                 </div>
                 <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white/90">{solution.title}</h2>
               </div>
-              
+
               <div className="lg:w-7/12 flex flex-col gap-10 relative z-10">
                 <p className="text-xl text-white/50 leading-relaxed font-light">{solution.desc}</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-8">
@@ -111,7 +111,7 @@ export default function Solutions() {
               </div>
             </ScrollReveal>
           ))}
-          
+
         </section>
       </main>
     </>

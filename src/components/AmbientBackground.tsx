@@ -156,22 +156,11 @@ export default function AmbientBackground() {
         </Canvas>
       </div>
 
-      {/* High-end technical grid overlay - extremely subtle */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #ffffff 1px, transparent 1px),
-            linear-gradient(to bottom, #ffffff 1px, transparent 1px)
-          `,
-          backgroundSize: '120px 120px',
-          maskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)',
-          WebkitMaskImage: 'radial-gradient(ellipse at center, black 10%, transparent 80%)'
-        }}
-      />
+      {/* Glassmorphic Overlay: Subdues the 3D object and puts sharp focus firmly on the typography */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[16px] pointer-events-none" />
 
-      {/* Light edge vignetting to frame the 3D model, replacing heavy black overlays */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_100%)] opacity-40" />
+      {/* Light edge vignetting to further frame the page and push focus center */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_100%)] pointer-events-none" />
     </div>
   );
 }

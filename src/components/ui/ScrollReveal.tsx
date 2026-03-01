@@ -90,14 +90,35 @@ export function AnimatedText({
     return () => ctx.revert();
   }, [delay, text]);
 
-  // Simple line splitting by words for illustration. In a real complex app, SplitText is better,
-  // but we'll approximate a line-by-line masked effect with words.
+  // Separate gradient-related classes so they apply to the inner text wrapper
+  // This fixes bg-clip-text not working across nested inline-block spans
+  const gradientClasses = [
+    "text-transparent",
+    "bg-clip-text",
+  ];
+  const gradientPatterns = [/bg-gradient-[\w-[\]\/]+/g, /from-[\w-[\]\/]+/g, /via-[\w-[\]\/]+/g, /to-[\w-[\]\/]+/g];
+
+  const classTokens = className.split(/\s+/);
+  const outerClasses: string[] = [];
+  const innerGradientClasses: string[] = [];
+
+  for (const token of classTokens) {
+    const isGradient =
+      gradientClasses.includes(token) ||
+      gradientPatterns.some((p) => { p.lastIndex = 0; return p.test(token); });
+    if (isGradient) {
+      innerGradientClasses.push(token);
+    } else {
+      outerClasses.push(token);
+    }
+  }
+
   const words = text.split(" ");
 
   return (
-    <Component ref={containerRef} className={className}>
+    <Component ref={containerRef} className={outerClasses.join(" ")}>
       <span className="sr-only">{text}</span>
-      <span aria-hidden="true" className="inline-flex flex-wrap gap-[0.2em]">
+      <span aria-hidden="true" className={`inline-flex flex-wrap gap-[0.2em] ${innerGradientClasses.join(" ")}`}>
         {words.map((word, i) => (
           <span key={i} className="inline-block overflow-hidden pb-1">
             <span className="inline-block line-reveal translate-y-full will-change-transform">
